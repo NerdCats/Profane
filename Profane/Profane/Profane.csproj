@@ -47,11 +47,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProfaneGrammar.g4.lexer.cs">
+      <DependentUpon>ProfaneGrammar.g4</DependentUpon>
+    </Compile>
+    <Compile Include="ProfaneGrammar.g4.parser.cs">
+      <DependentUpon>ProfaneGrammar.g4</DependentUpon>
+    </Compile>
     <Compile Include="ProfaneVisitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Antlr4 Include="ProfaneGrammar.g4">
+      <Generator>MSBuild:Compile</Generator>
+      <CustomToolNamespace>Profane</CustomToolNamespace>
+    </Antlr4>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

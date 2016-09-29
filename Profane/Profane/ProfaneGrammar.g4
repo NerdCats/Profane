@@ -3,10 +3,10 @@ grammar ProfaneGrammar;
 /*
  * Parser Rules
  */
-script : block* 
-  block  : STRING LBRACE command* RBRACE 
-  command : STRING property* SEMI
-  property : (STRING EQUALS)?  STRING
+script : block+ ;
+block  : STRING LBRACE command+ RBRACE; 
+command : STRING property+ SEMI; 
+property : (STRING EQUALS)?  STRING; 
 
 compileUnit
 	:	EOF
