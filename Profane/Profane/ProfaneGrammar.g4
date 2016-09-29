@@ -25,5 +25,5 @@ STRING : ('a'..'z'|'A'..'Z'|'0'..'9'|'_')+
                      | ('"' (~'"')* '"');
 
 WS
-	:	' ' -> channel(HIDDEN)
-	;
+    :   (' ' | '\r' | '\n') -> channel(HIDDEN)
+    ;
