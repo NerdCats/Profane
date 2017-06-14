@@ -31,15 +31,15 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface IProfaneListener : IParseTreeListener {
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="ProfaneParser.compilation_unit"/>.
+	/// Enter a parse tree produced by <see cref="ProfaneParser.compilationUnit"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterCompilation_unit([NotNull] ProfaneParser.Compilation_unitContext context);
+	void EnterCompilationUnit([NotNull] ProfaneParser.CompilationUnitContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="ProfaneParser.compilation_unit"/>.
+	/// Exit a parse tree produced by <see cref="ProfaneParser.compilationUnit"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitCompilation_unit([NotNull] ProfaneParser.Compilation_unitContext context);
+	void ExitCompilationUnit([NotNull] ProfaneParser.CompilationUnitContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="ProfaneParser.statement"/>.
 	/// </summary>
@@ -51,25 +51,25 @@ public interface IProfaneListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitStatement([NotNull] ProfaneParser.StatementContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="ProfaneParser.assign_statement"/>.
+	/// Enter a parse tree produced by <see cref="ProfaneParser.printstmt"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterAssign_statement([NotNull] ProfaneParser.Assign_statementContext context);
+	void EnterPrintstmt([NotNull] ProfaneParser.PrintstmtContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="ProfaneParser.assign_statement"/>.
+	/// Exit a parse tree produced by <see cref="ProfaneParser.printstmt"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitAssign_statement([NotNull] ProfaneParser.Assign_statementContext context);
+	void ExitPrintstmt([NotNull] ProfaneParser.PrintstmtContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="ProfaneParser.invoke_statement"/>.
+	/// Enter a parse tree produced by <see cref="ProfaneParser.assignstmt"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterInvoke_statement([NotNull] ProfaneParser.Invoke_statementContext context);
+	void EnterAssignstmt([NotNull] ProfaneParser.AssignstmtContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="ProfaneParser.invoke_statement"/>.
+	/// Exit a parse tree produced by <see cref="ProfaneParser.assignstmt"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitInvoke_statement([NotNull] ProfaneParser.Invoke_statementContext context);
+	void ExitAssignstmt([NotNull] ProfaneParser.AssignstmtContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="ProfaneParser.expr"/>.
 	/// </summary>
@@ -80,4 +80,24 @@ public interface IProfaneListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitExpr([NotNull] ProfaneParser.ExprContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="ProfaneParser.identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterIdentifier([NotNull] ProfaneParser.IdentifierContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ProfaneParser.identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitIdentifier([NotNull] ProfaneParser.IdentifierContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="ProfaneParser.number"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterNumber([NotNull] ProfaneParser.NumberContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ProfaneParser.number"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitNumber([NotNull] ProfaneParser.NumberContext context);
 }

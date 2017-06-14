@@ -1,21 +1,23 @@
 grammar Profane;
 
-compilation_unit: statement* ;
-statement:
-    init_statement SMILEY | print_statement SMILEY;
+compilationUnit: statement* EOF;
 
+statement: 
+        printstmt
+        | assignstmt;
 
-init_statement: DERP ID ASSIGN expr;
-print_statement: PRINT (expr)?;
+printstmt: 'dump' expr? SMILEY;
+assignstmt: 'derp' ID '=' expr SMILEY;
 
-expr: ID | NUMBER | STRING;
+expr: identifier | number | STRING;
 
-DERP: 'derp';
+identifier: ID;
+number: NUMBER;
+
+// Keywords
 ID: [a-zA-Z_] [a-zA-Z0-9_]*;
-ASSIGN: '=';
-COMMA: ',';
 SMILEY: ':)';
-PRINT: 'dump';
+WS: [ \n\t\r]+ -> skip;
 
 fragment INT: [0-9]+;
 NUMBER: INT ('.'(INT)?)?;
