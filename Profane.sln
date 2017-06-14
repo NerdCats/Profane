@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profane", "Profane\Profane.csproj", "{35142290-5F27-4A0C-AF0C-5A513C18B428}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profane.Core", "Profane.Core\Profane.Core.csproj", "{9B759651-B076-4E14-BC6C-1E5FDB8DA7CB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{35142290-5F27-4A0C-AF0C-5A513C18B428}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35142290-5F27-4A0C-AF0C-5A513C18B428}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35142290-5F27-4A0C-AF0C-5A513C18B428}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35142290-5F27-4A0C-AF0C-5A513C18B428}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B759651-B076-4E14-BC6C-1E5FDB8DA7CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B759651-B076-4E14-BC6C-1E5FDB8DA7CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B759651-B076-4E14-BC6C-1E5FDB8DA7CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B759651-B076-4E14-BC6C-1E5FDB8DA7CB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
