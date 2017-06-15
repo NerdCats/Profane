@@ -8,6 +8,7 @@
     using System;
     using System.Linq.Expressions;
     using System.Reflection;
+    using System.Diagnostics;
 
     class Program
     {
@@ -22,27 +23,26 @@
         };
 
         static void Main(string[] args)
-
         {
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+
+            ScriptOptions scriptOptions = ScriptOptions.Default;
+            scriptOptions = scriptOptions.AddReferences(References);
+            scriptOptions = scriptOptions.AddImports("System");
+
             var walker = new ProfaneTranspiler();
             var sampleCode = @"derp some = 2 :)
                                dump some :) ";
 
 
             var resultCode = walker.GenerateTranspiledCode(sampleCode);
+            var result = CSharpScript.RunAsync(resultCode, scriptOptions).GetAwaiter().GetResult();
 
-            ScriptOptions scriptOptions = ScriptOptions.Default;
+            watch.Stop();
 
-            scriptOptions = scriptOptions.AddReferences(References);
-            //Add namespaces
-            scriptOptions = scriptOptions.AddImports("System");
-
-            var result = CSharpScript.EvaluateAsync("dynamic something = 2;", scriptOptions)
-                .GetAwaiter().GetResult();
-
-            Console.WriteLine(result);
-
-            Console.WriteLine(resultCode);
+            Console.WriteLine($"Executed in {watch.Elapsed.ToString()}");
+            Console.WriteLine("NerdCats Profane");
             Console.ReadKey();
         }
     }
