@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Antlr4.Runtime.Standard" Version="4.7.1" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="2.3.0-beta2" />
   </ItemGroup>
  
   <Target Name="Antlr4" BeforeTargets="Build">
