@@ -1,17 +1,16 @@
 ﻿namespace Profane
 {
     using Nancy;
-    using Nancy.ModelBinding;
     using Profane.Core.Transpile;
     using Nancy.Extensions;
     using Nancy.IO;
 
-    public class ProfaneModule: NancyModule
+    public class ProfaneModule : NancyModule
     {
         public ProfaneModule()
         {
-            Get("/", args => "Hello from Profane online transpiler");
-            Post("/", async (args) => 
+            Get("/", args => View["index"]);
+            Post("/", async (args) =>
             {
                 var code = RequestStream.FromStream(Request.Body).AsString();
                 var transpiler = new ProfaneTranspiler();

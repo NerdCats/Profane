@@ -15,4 +15,10 @@
     <ProjectReference Include="..\Profane.Core\Profane.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="https://unpkg.com/marked@0.3.6"></script>
+    <script type="text/javascript" src="https://unpkg.com/lodash@4.16.0"></script>
+    <script type="text/javascript" src="https://unpkg.com/vue@latest/dist/vue.js"></script>
+    <style type="text/css">
+        html, body, #editor {
+            margin: 0;
+            height: 100%;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            color: #333;
+        }
+
+            textarea, #editor div {
+                display: inline-block;
+                width: 49%;
+                height: 100%;
+                vertical-align: top;
+                box-sizing: border-box;
+                padding: 0 20px;
+            }
+
+        textarea {
+            border: none;
+            border-right: 1px solid #ccc;
+            resize: none;
+            outline: none;
+            background-color: #f6f6f6;
+            font-size: 14px;
+            font-family: 'Monaco', courier, monospace;
+            padding: 20px;
+        }
+
+        code {
+            color: #f66;
+        }
+
+        .ident {
+            color: #D6665D;
+        }
+    </style>
+    <title>NerdCats Profane</title>
+    <script type="text/javascript">
+        //<![CDATA[
+        window.onload = function () {
+            new Vue({
+                el: '#editor',
+                data: {
+                    input: '# hello'
+                },
+                computed: {
+                    compiledMarkdown: function () {
+                        var specialReg = /(dump|derp)/g;
+                        var result = this.input.replace(specialReg, '<span class="ident"> $1 </span>');
+                        console.log(result);
+                        return result;
+                    }
+                },
+                methods: {
+                    update: _.debounce(function (e) {
+                        this.input = e.target.value
+                    }, 300)
+                }
+            })
+        }//]]>
+    </script>
+</head>
+
+<body>
+    <div id="editor">
+        <textarea :value="input" @input="update"></textarea>
+        <div v-html="compiledMarkdown"></div>
+    </div>
+</body>
+</html>
