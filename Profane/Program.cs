@@ -26,24 +26,33 @@
         {
             Stopwatch watch = new Stopwatch();
             watch.Start();
+            try
+            {
+                ScriptOptions scriptOptions = ScriptOptions.Default;
+                scriptOptions = scriptOptions.AddReferences(References);
+                scriptOptions = scriptOptions.AddImports("System");
 
-            ScriptOptions scriptOptions = ScriptOptions.Default;
-            scriptOptions = scriptOptions.AddReferences(References);
-            scriptOptions = scriptOptions.AddImports("System");
-
-            var walker = new ProfaneTranspiler();
-            var sampleCode = @"derp some = 2 :)
-                               dump some :) ";
+                var walker = new ProfaneTranspiler();
+                var sampleCode = @"derp some = 2 :) 
+                                   dump some :) ";
 
 
-            var resultCode = walker.GenerateTranspiledCode(sampleCode);
-            var result = CSharpScript.RunAsync(resultCode, scriptOptions).GetAwaiter().GetResult();
+                var resultCode = walker.GenerateTranspiledCode(sampleCode);
+                var result = CSharpScript.RunAsync(resultCode, scriptOptions).GetAwaiter().GetResult();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                watch.Stop();
 
-            watch.Stop();
+                Console.WriteLine($"Executed in {watch.Elapsed.ToString()}");
+                Console.WriteLine("NerdCats Profane");
+                Console.ReadKey();
+            }
 
-            Console.WriteLine($"Executed in {watch.Elapsed.ToString()}");
-            Console.WriteLine("NerdCats Profane");
-            Console.ReadKey();
         }
     }
 }
