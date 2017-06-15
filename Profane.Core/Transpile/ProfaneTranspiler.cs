@@ -1,51 +1,40 @@
 ﻿namespace Profane.Core.Transpile
 {
-    using Antlr4.Runtime.Misc;
-    using System;
-    using System.Text.RegularExpressions;
+    using Antlr4.Runtime;
+    using Antlr4.Runtime.Tree;
 
-    public class ProfaneTranspiler : ProfaneBaseListener
+    public class ProfaneTranspiler
     {
+        private ProfaneListener listener;
+
         public ProfaneTranspiler()
         {
-            this.Output = string.Empty;
+            this.listener = new ProfaneListener();
         }
 
-        public string Output { get; private set; }
-
-        public override void EnterAssignstmt([NotNull] ProfaneParser.AssignstmtContext context)
+        public ProfaneParser.CompilationUnitContext GenerateAST(string input)
         {
-            string target = context.ID().GetText();
-            dynamic value = this.ResolveExpression(context.expr());
-            this.Output += "dynamic " + target + " = " + value + ";\n";
+            var inputStream = new AntlrInputStream(input);
+            var lexer = new ProfaneLexer(inputStream);
+            var tokens = new CommonTokenStream(lexer);
+            var parser = new ProfaneParser(tokens);
+            parser.ErrorHandler = new BailErrorStrategy();
+
+            return parser.compilationUnit();
         }
 
-        public override void EnterPrintstmt([NotNull] ProfaneParser.PrintstmtContext context)
+        public string GenerateTranspiledCode(string inputText)
         {
-            var resolvedExp = context.expr() == null ? string.Empty : this.ResolveExpression(context.expr());
-            this.Output += $"System.Console.WriteLine({resolvedExp});\n";
-        }
-
-        // TODO: Shouldn't we do anything about the expressions? May be, this will get clear when we start writing the REPL I guess
-
-        private dynamic ResolveExpression(ProfaneParser.ExprContext exprContext)
-        {
-            if (exprContext.number() != null)
+            try
             {
-                return exprContext.number().GetText();
+                var astree = this.GenerateAST(inputText);
+                ParseTreeWalker.Default.Walk(listener, astree);
+                return listener.Output;
             }
-            else if (exprContext.identifier() != null)
+            catch
             {
-                return exprContext.identifier().GetText();
+                return null;
             }
-            else if (exprContext.STRING() != null)
-            {
-                Regex regex = new Regex("/\\$\\{([^\\}]+)\\}/g");
-                var contextText = exprContext.GetText();
-                var replacedString = regex.Replace(contextText, "$1");
-                return replacedString;
-            }
-            else return default(dynamic);
         }
     }
 }
