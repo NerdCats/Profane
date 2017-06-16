@@ -22,3 +22,5 @@ kbye
 dump a :)
 ```
 The Profane project comes with a [nancy](https://github.com/NancyFx/Nancy) module that accepts code as plain text in a HTTP POST and compiles it. Was built to put up a simple test code page in mind. 
+
+Everything .net in Profane is written in [.net core](https://github.com/dotnet/core)
