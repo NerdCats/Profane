@@ -1,6 +1,7 @@
 ﻿namespace Profane.Core.Transpile
 {
     using Antlr4.Runtime.Misc;
+    using System.Linq;
     using System.Text.RegularExpressions;
 
     public class ProfaneListener : ProfaneBaseListener
@@ -25,22 +26,39 @@
             this.Output += $"System.Console.WriteLine({resolvedExp});\n";
         }
 
-        // TODO: Shouldn't we do anything about the expressions? May be, this will get clear when we start writing the REPL I guess
-
         private dynamic ResolveExpression(ProfaneParser.ExprContext exprContext)
         {
-            if (exprContext.number() != null)
+            var op = exprContext.OP().GetText();
+            if (op != null)
             {
-                return exprContext.number().GetText();
+                var leftTerm = exprContext.term().First();
+                var rightTerm = exprContext.term().Last();
+
+                var left = ResolveTerm(leftTerm);
+                var right = ResolveTerm(rightTerm);
+
+                return left + " " | op + " " + right;
             }
-            else if (exprContext.identifier() != null)
+            else
             {
-                return exprContext.identifier().GetText();
+                return ResolveTerm(exprContext.term().First());
             }
-            else if (exprContext.STRING() != null)
+        }
+
+        private dynamic ResolveTerm(ProfaneParser.TermContext termContext)
+        {
+            if (termContext.number() != null)
+            {
+                return termContext.number().GetText();
+            }
+            else if (termContext.identifier() != null)
+            {
+                return termContext.identifier().GetText();
+            }
+            else if (termContext.STRING() != null)
             {
                 Regex regex = new Regex("/\\$\\{([^\\}]+)\\}/g");
-                var contextText = exprContext.GetText();
+                var contextText = termContext.GetText();
                 var replacedString = regex.Replace(contextText, "$1");
                 return replacedString;
             }

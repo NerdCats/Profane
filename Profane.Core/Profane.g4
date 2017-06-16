@@ -9,9 +9,7 @@ statement:
 printstmt: 'dump' expr? SMILEY;
 assignstmt: 'derp' ID '=' expr SMILEY;
 
-expr: 
-        term
-        | term OP term;
+expr: term (OP term)?;
 
 term: identifier | number | STRING;
 
