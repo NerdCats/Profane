@@ -95,6 +95,18 @@ public partial class ProfaneBaseListener : IProfaneListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitExpr([NotNull] ProfaneParser.ExprContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="ProfaneParser.term"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTerm([NotNull] ProfaneParser.TermContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ProfaneParser.term"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTerm([NotNull] ProfaneParser.TermContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="ProfaneParser.identifier"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

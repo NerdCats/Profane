@@ -81,6 +81,16 @@ public interface IProfaneListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitExpr([NotNull] ProfaneParser.ExprContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="ProfaneParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterTerm([NotNull] ProfaneParser.TermContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ProfaneParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitTerm([NotNull] ProfaneParser.TermContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="ProfaneParser.identifier"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
