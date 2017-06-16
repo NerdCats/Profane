@@ -3,6 +3,7 @@
     using Antlr4.Runtime.Misc;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using System;
 
     public class ProfaneListener : ProfaneBaseListener
     {
@@ -28,21 +29,26 @@
 
         private dynamic ResolveExpression(ProfaneParser.ExprContext exprContext)
         {
-            var op = exprContext.OP().GetText();
-            if (op != null)
+            var opExpression = exprContext.opExpression();
+            if (opExpression != null)
             {
-                var leftTerm = exprContext.term().First();
-                var rightTerm = exprContext.term().Last();
-
-                var left = ResolveTerm(leftTerm);
-                var right = ResolveTerm(rightTerm);
-
-                return left + " " | op + " " + right;
+                return resolvePlusExpression(opExpression);
             }
             else
             {
-                return ResolveTerm(exprContext.term().First());
+                return ResolveTerm(exprContext.term());
             }
+        }
+
+        private dynamic resolvePlusExpression(ProfaneParser.OpExpressionContext plusContext)
+        {
+            var leftTerm = plusContext.term().First();
+            var rightTerm = plusContext.term().Last();
+
+            var left = ResolveTerm(leftTerm);
+            var right = ResolveTerm(rightTerm);
+
+            return left + plusContext.op().GetText() + right;
         }
 
         private dynamic ResolveTerm(ProfaneParser.TermContext termContext)
@@ -51,9 +57,9 @@
             {
                 return termContext.number().GetText();
             }
-            else if (termContext.identifier() != null)
+            else if (termContext.ID() != null)
             {
-                return termContext.identifier().GetText();
+                return termContext.ID().GetText();
             }
             else if (termContext.STRING() != null)
             {

@@ -95,6 +95,30 @@ public partial class ProfaneBaseListener : IProfaneListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitExpr([NotNull] ProfaneParser.ExprContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="ProfaneParser.opExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterOpExpression([NotNull] ProfaneParser.OpExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ProfaneParser.opExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitOpExpression([NotNull] ProfaneParser.OpExpressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="ProfaneParser.op"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterOp([NotNull] ProfaneParser.OpContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ProfaneParser.op"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitOp([NotNull] ProfaneParser.OpContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="ProfaneParser.term"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -106,18 +130,6 @@ public partial class ProfaneBaseListener : IProfaneListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitTerm([NotNull] ProfaneParser.TermContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="ProfaneParser.identifier"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterIdentifier([NotNull] ProfaneParser.IdentifierContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="ProfaneParser.identifier"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitIdentifier([NotNull] ProfaneParser.IdentifierContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="ProfaneParser.number"/>.
 	/// <para>The default implementation does nothing.</para>

@@ -7,13 +7,14 @@ statement:
         | assignstmt;
 
 printstmt: 'dump' expr? SMILEY;
-assignstmt: 'derp' ID '=' expr SMILEY;
+assignstmt: 'derp' ID ASSIGN expr SMILEY;
 
-expr: term (OP term)?;
+expr: term | opExpression;
+opExpression: term op term;
+op: PLUS | EQUAL| ASSIGN | NOTEQUAL | MINUS;
 
-term: identifier | number | STRING;
+term: ID | number | STRING;
 
-identifier: ID;
 number: NUMBER;
 
 // Keywords
@@ -21,12 +22,11 @@ ID: [a-zA-Z_] [a-zA-Z0-9_]*;
 SMILEY: ':)';
 WS: [ \n\t\r]+ -> skip;
 
-PLUS: '+';
-EQUAL: '==';
-ASSIGN: '=';
+PLUS    :'+';
+EQUAL   : '==';
+ASSIGN  : '=';
 NOTEQUAL: '!=';
-MINUS: '-';
-OP: PLUS | EQUAL| ASSIGN | NOTEQUAL | MINUS;
+MINUS   : '-';
 
 fragment INT: [0-9]+;
 NUMBER: INT ('.'(INT)?)?;

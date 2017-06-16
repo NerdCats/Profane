@@ -45,16 +45,9 @@
 
         public string GenerateTranspiledCode(string inputText)
         {
-            try
-            {
-                var astree = this.GenerateAST(inputText);
-                ParseTreeWalker.Default.Walk(listener, astree);
-                return listener.Output;
-            }
-            catch
-            {
-                return null;
-            }
+            var astree = this.GenerateAST(inputText);
+            ParseTreeWalker.Default.Walk(listener, astree);
+            return listener.Output;
         }
 
         public async Task<TranspileResult> RunAsync(string code)
@@ -89,7 +82,7 @@
                     result.output = outputStrBuilder.ToString();
                 }
             }
-            catch (CompilationErrorException ex)
+            catch (Exception ex)
             {
                 result.output = ex.Message;
             }
