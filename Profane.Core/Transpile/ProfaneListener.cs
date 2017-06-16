@@ -27,12 +27,43 @@
             this.Output += $"System.Console.WriteLine({resolvedExp});\n";
         }
 
+        public override void EnterSetstmt([NotNull] ProfaneParser.SetstmtContext context)
+        {
+            string target = context.ID().GetText();
+            dynamic value = this.ResolveExpression(context.expr());
+            this.Output += target + " = " + value + ";\n";
+        }
+
+        public override void EnterIfstmt([NotNull] ProfaneParser.IfstmtContext context)
+        {
+            var conditionalExpression = ResolveConditionalExpression(context.conditionExpr());
+
+            this.Output += $"if({conditionalExpression})";
+            this.Output += "{\n";
+        }
+
+        public override void ExitIfstmt([NotNull] ProfaneParser.IfstmtContext context)
+        {
+            this.Output += "}\n";
+        }
+
+        private object ResolveConditionalExpression(ProfaneParser.ConditionExprContext conditionExprContext)
+        {
+            var leftExpr = conditionExprContext.expr().First();
+            var rightExpr = conditionExprContext.expr().Last();
+
+            var left = ResolveExpression(leftExpr);
+            var right = ResolveExpression(rightExpr);
+
+            return left + conditionExprContext.relop().GetText() + right;
+        }
+
         private dynamic ResolveExpression(ProfaneParser.ExprContext exprContext)
         {
             var opExpression = exprContext.opExpression();
             if (opExpression != null)
             {
-                return resolvePlusExpression(opExpression);
+                return ResolveOpExpression(opExpression);
             }
             else
             {
@@ -40,7 +71,7 @@
             }
         }
 
-        private dynamic resolvePlusExpression(ProfaneParser.OpExpressionContext plusContext)
+        private dynamic ResolveOpExpression(ProfaneParser.OpExpressionContext plusContext)
         {
             var leftTerm = plusContext.term().First();
             var rightTerm = plusContext.term().Last();

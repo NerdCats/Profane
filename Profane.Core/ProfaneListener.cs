@@ -71,6 +71,36 @@ public interface IProfaneListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitAssignstmt([NotNull] ProfaneParser.AssignstmtContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="ProfaneParser.setstmt"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterSetstmt([NotNull] ProfaneParser.SetstmtContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ProfaneParser.setstmt"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitSetstmt([NotNull] ProfaneParser.SetstmtContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="ProfaneParser.ifstmt"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterIfstmt([NotNull] ProfaneParser.IfstmtContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ProfaneParser.ifstmt"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitIfstmt([NotNull] ProfaneParser.IfstmtContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="ProfaneParser.conditionExpr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterConditionExpr([NotNull] ProfaneParser.ConditionExprContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ProfaneParser.conditionExpr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitConditionExpr([NotNull] ProfaneParser.ConditionExprContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="ProfaneParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -100,6 +130,16 @@ public interface IProfaneListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitOp([NotNull] ProfaneParser.OpContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="ProfaneParser.relop"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterRelop([NotNull] ProfaneParser.RelopContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ProfaneParser.relop"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitRelop([NotNull] ProfaneParser.RelopContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="ProfaneParser.term"/>.
 	/// </summary>

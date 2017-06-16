@@ -83,6 +83,42 @@ public partial class ProfaneBaseListener : IProfaneListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitAssignstmt([NotNull] ProfaneParser.AssignstmtContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="ProfaneParser.setstmt"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterSetstmt([NotNull] ProfaneParser.SetstmtContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ProfaneParser.setstmt"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitSetstmt([NotNull] ProfaneParser.SetstmtContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="ProfaneParser.ifstmt"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterIfstmt([NotNull] ProfaneParser.IfstmtContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ProfaneParser.ifstmt"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitIfstmt([NotNull] ProfaneParser.IfstmtContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="ProfaneParser.conditionExpr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterConditionExpr([NotNull] ProfaneParser.ConditionExprContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ProfaneParser.conditionExpr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitConditionExpr([NotNull] ProfaneParser.ConditionExprContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="ProfaneParser.expr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -118,6 +154,18 @@ public partial class ProfaneBaseListener : IProfaneListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitOp([NotNull] ProfaneParser.OpContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="ProfaneParser.relop"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterRelop([NotNull] ProfaneParser.RelopContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ProfaneParser.relop"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitRelop([NotNull] ProfaneParser.RelopContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="ProfaneParser.term"/>.
 	/// <para>The default implementation does nothing.</para>
